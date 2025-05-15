@@ -1,4 +1,4 @@
-package com.example.loan_payment_system;
+package com.example.loanpaymentsystem;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
