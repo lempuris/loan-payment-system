@@ -37,7 +37,7 @@ public class LoanService {
 	}
 
 	@Transactional
-	public Loan updateLoanBalance(Long loanId, BigDecimal paymentAmount) {
+	public Loan updateLoanBalance(Long loanId, BigDecimal paymentAmount) {	
 		Loan loan = getLoanById(loanId);
 
 		if (paymentAmount.compareTo(loan.getRemainingBalance()) > 0) {
