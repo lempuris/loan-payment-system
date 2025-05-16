@@ -1,17 +1,17 @@
 package com.example.loanpaymentsystem.loan.service;
 
 import java.math.BigDecimal;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.loanpaymentsystem.loan.model.Loan;
-import com.example.loanpaymentsystem.loan.model.Loan.LoanStatus;
 import com.example.loanpaymentsystem.loan.repository.LoanRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 
+@Service
 public class LoanService {
 
 	LoanRepository loanRepository;

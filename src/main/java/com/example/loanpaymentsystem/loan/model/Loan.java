@@ -23,15 +23,19 @@ public class Loan {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long loanId;
+	
 	@Column(nullable = false)
 	private BigDecimal loanAmount;
+	
 	@Column(nullable = false)
 	private BigDecimal remainingBalance;
+	
 	@Column(nullable = false)
 	private Integer term;
+	
 	@Enumerated(EnumType.STRING)
 	private LoanStatus status;
-	
+
 	public enum LoanStatus {
 		ACTIVE, SETTLED
 	}
