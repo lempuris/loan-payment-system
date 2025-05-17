@@ -102,7 +102,7 @@ class LoanServiceTest {
 		Long loanId = 1L;
 		BigDecimal initialBalance = new BigDecimal("1000.00");
 		BigDecimal paymentAmount = new BigDecimal("200.00");
-		BigDecimal expectedRemainingBalance = new BigDecimal("800");
+		BigDecimal expectedRemainingBalance = new BigDecimal("800.00");
 		
 		Loan loan = Loan.builder()
                 .loanId(loanId)
