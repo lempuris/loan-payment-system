@@ -8,16 +8,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class Payment {
 	
 	@Id
@@ -32,5 +28,17 @@ public class Payment {
     
     @Column(nullable = false)
     private LocalDateTime paymentDate;
-
+    
+    public Payment(Long loanId, BigDecimal paymentAmount, LocalDateTime paymentDate) {
+        this.loanId = loanId;
+        this.paymentAmount = paymentAmount;
+        this.paymentDate = paymentDate;
+    }
+    
+    public Payment(Long paymentId, Long loanId, BigDecimal paymentAmount, LocalDateTime paymentDate) {
+        this.paymentId = paymentId;
+        this.loanId = loanId;
+        this.paymentAmount = paymentAmount;
+        this.paymentDate = paymentDate;
+    }
 }

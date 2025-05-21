@@ -27,13 +27,10 @@ public class PaymentService {
 	public Payment makePayment(Long loanId, BigDecimal amount) {
 		// Update loan balance first (this will validate the loan exists and payment
 		// amount is valid)
-
 		loanService.updateLoanBalance(loanId, amount);
-
-		Payment payment = Payment.builder().loanId(loanId).paymentAmount(amount).paymentDate(LocalDateTime.now())
-				.build();
+		
+		Payment payment = new Payment(loanId, amount, LocalDateTime.now());
 
 		return paymentRepository.save(payment);
 	}
-
 }

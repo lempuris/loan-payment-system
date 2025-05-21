@@ -24,17 +24,15 @@ public class LoanService {
 
 	@Transactional
 	public Loan createLoan(BigDecimal amount, int term) {
-		Loan loan = Loan.builder().loanAmount(amount).remainingBalance(amount).term(term).status(Loan.LoanStatus.ACTIVE)
-				.build();
+		// Using constructor instead of builder
+		Loan loan = new Loan(amount, amount, term, Loan.LoanStatus.ACTIVE);
 		return loanRepository.save(loan);
-
 	}
 
 	@Transactional(readOnly = true)
 	public Loan getLoanById(Long loanId) {
 		return loanRepository.findById(loanId)
 				.orElseThrow(() -> new EntityNotFoundException("Loan with id:" + loanId + "not found"));
-
 	}
 	
 
@@ -54,7 +52,5 @@ public class LoanService {
 		}
 
 		return loanRepository.save(loan);
-
 	}
-
 }
