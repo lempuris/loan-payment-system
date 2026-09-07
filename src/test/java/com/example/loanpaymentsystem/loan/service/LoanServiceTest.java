@@ -12,7 +12,6 @@ import static org.mockito.Mockito.when;
 import java.math.BigDecimal;
 import java.util.Optional;
 
-import org.aopalliance.intercept.Invocation;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -44,13 +43,7 @@ class LoanServiceTest {
 		BigDecimal amount = new BigDecimal("1000.00");
 		Integer term = 12;
 		
-		Loan expectedLoan = Loan.builder()
-							.loanId(1L)
-							.loanAmount(amount)
-							.term(term)
-							.remainingBalance(amount)
-							.status(Loan.LoanStatus.ACTIVE)
-							.build();
+                Loan expectedLoan = new Loan(1L, amount, amount, term, Loan.LoanStatus.ACTIVE);
 		
 		when(loanRepository.save(any(Loan.class))).thenReturn(expectedLoan);
 		
@@ -70,13 +63,8 @@ class LoanServiceTest {
 	@Test
 	void getLoanById_WhenLoanExists_ShouldReturnLoan() {
 		Long loanId = 1L;
-		Loan expectedLoan = Loan.builder()
-                .loanId(loanId)
-                .loanAmount(new BigDecimal("1000.00"))
-                .remainingBalance(new BigDecimal("1000.00"))
-                .term(12)
-                .status(Loan.LoanStatus.ACTIVE)
-                .build();
+                Loan expectedLoan = new Loan(loanId, new BigDecimal("1000.00"), new BigDecimal("1000.00"), 12,
+                                Loan.LoanStatus.ACTIVE);
 		
 		when(loanRepository.findById(loanId)).thenReturn(Optional.of(expectedLoan));
 		
@@ -104,13 +92,7 @@ class LoanServiceTest {
 		BigDecimal paymentAmount = new BigDecimal("200.00");
 		BigDecimal expectedRemainingBalance = new BigDecimal("800.00");
 		
-		Loan loan = Loan.builder()
-                .loanId(loanId)
-                .loanAmount(initialBalance)
-                .remainingBalance(initialBalance)
-                .term(12)
-                .status(Loan.LoanStatus.ACTIVE)
-                .build();
+                Loan loan = new Loan(loanId, initialBalance, initialBalance, 12, Loan.LoanStatus.ACTIVE);
 		
 		when(loanRepository.findById(loanId)).thenReturn(Optional.of(loan));
 		when(loanRepository.save(any(Loan.class))).thenAnswer(invocation -> invocation.getArgument(0));
@@ -133,13 +115,7 @@ class LoanServiceTest {
         BigDecimal initialBalance = new BigDecimal("1000.00");
         BigDecimal paymentAmount = new BigDecimal("1200.00");
         
-        Loan loan = Loan.builder()
-                .loanId(loanId)
-                .loanAmount(initialBalance)
-                .remainingBalance(initialBalance)
-                .term(12)
-                .status(Loan.LoanStatus.ACTIVE)
-                .build();
+        Loan loan = new Loan(loanId, initialBalance, initialBalance, 12, Loan.LoanStatus.ACTIVE);
         
         when(loanRepository.findById(loanId)).thenReturn(Optional.of(loan));
         
@@ -157,13 +133,7 @@ class LoanServiceTest {
         BigDecimal initialBalance = new BigDecimal("1000.00");
         BigDecimal paymentAmount = new BigDecimal("1000.00");
         
-        Loan loan = Loan.builder()
-                .loanId(loanId)
-                .loanAmount(initialBalance)
-                .remainingBalance(initialBalance)
-                .term(12)
-                .status(Loan.LoanStatus.ACTIVE)
-                .build();
+        Loan loan = new Loan(loanId, initialBalance, initialBalance, 12, Loan.LoanStatus.ACTIVE);
         
         when(loanRepository.findById(loanId)).thenReturn(Optional.of(loan));
         when(loanRepository.save(any(Loan.class))).thenAnswer(invocation -> invocation.getArgument(0));

@@ -42,11 +42,10 @@ public class PaymentServiceTest {
 		Long loanId = 1L;
 		BigDecimal paymentAmount = new BigDecimal("200.00");
 
-		Loan updatedLoan = Loan.builder().loanId(loanId).loanAmount(new BigDecimal("1000.00"))
-				.remainingBalance(new BigDecimal("800.00")).term(12).status(Loan.LoanStatus.ACTIVE).build();
+		Loan updatedLoan = new Loan(loanId, new BigDecimal("1000.00"), new BigDecimal("800.00"), 12,
+				Loan.LoanStatus.ACTIVE);
 
-		Payment expectedPayment = Payment.builder().paymentId(1L).loanId(loanId).paymentAmount(paymentAmount)
-				.paymentDate(LocalDateTime.now()).build();
+		Payment expectedPayment = new Payment(1L, loanId, paymentAmount, LocalDateTime.now());
 
 		when(loanService.updateLoanBalance(loanId, paymentAmount)).thenReturn(updatedLoan);
 		when(paymentRepository.save(any(Payment.class))).thenReturn(expectedPayment);

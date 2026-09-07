@@ -15,7 +15,7 @@ This application provides REST APIs for managing loans and payments. It uses an 
 
 ## Technical Stack
 
-- Java 17
+- Java 25
 - Spring Boot 3.2.0
 - Spring Data JPA
 - H2 Database
@@ -25,7 +25,7 @@ This application provides REST APIs for managing loans and payments. It uses an 
 
 ### Prerequisites
 
-- Java 17 or higher
+- Java 25 or higher
 - Maven 3.6 or higher
 
 ### Building the Application
